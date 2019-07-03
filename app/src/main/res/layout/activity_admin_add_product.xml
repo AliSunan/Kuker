@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Admin.AdminAddProductActivity">
+
+    <ImageView
+        android:id="@+id/select_image"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:cropToPadding="false"
+        android:src="@drawable/camera"/>
+
+    <EditText
+        android:id="@+id/produk_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:hint="Product Name..."
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:background="@drawable/input_design"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"/>
+
+    <EditText
+        android:id="@+id/produk_desc"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:hint="Product Description..."
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:background="@drawable/input_design"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"/>
+
+    <EditText
+        android:id="@+id/produk_price"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:hint="Product Price..."
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:background="@drawable/input_design"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"/>
+
+    <Button
+        android:id="@+id/produk_create"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@drawable/buttons"
+        android:text="Add Product"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"/>
+
+</LinearLayout>

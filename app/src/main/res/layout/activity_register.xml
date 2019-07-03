@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/qqq"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/create_applogo"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_weight="2"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo"/>
+
+    <EditText
+        android:id="@+id/create_id"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/input_design"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="40dp"
+        android:padding="15dp"
+        android:hint="Name"
+        android:textColorHint="#ffffff"
+        android:inputType="text"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/create_email"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/input_design"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="6dp"
+        android:padding="15dp"
+        android:hint="Email"
+        android:textColorHint="#ffffff"
+        android:inputType="textEmailAddress"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/create_password"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/input_design"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="6dp"
+        android:padding="15dp"
+        android:hint="Password"
+        android:textColorHint="#ffffff"
+        android:inputType="textPassword"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/create_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/input_design"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="6dp"
+        android:padding="15dp"
+        android:hint="Phone Number"
+        android:textColorHint="#ffffff"
+        android:inputType="phone"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/create_home_adress"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/input_design"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="6dp"
+        android:padding="15dp"
+        android:hint="Home Adress"
+        android:textColorHint="#ffffff"
+        android:inputType="text"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/create_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/buttons"
+        android:padding="15dp"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:text="Create"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>
