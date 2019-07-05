@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity
         InputEmail = (EditText) findViewById(R.id.create_email);
         InputPassword = (EditText) findViewById(R.id.create_password);
         InputPhoneNumber = (EditText) findViewById(R.id.create_phone_number);
-        InputHomeAdress = (EditText) findViewById(R.id.create_home_adress);
+        InputHomeAdress = (EditText) findViewById(R.id.create_home_address);
         loadingbar = new ProgressDialog(this);
 
 

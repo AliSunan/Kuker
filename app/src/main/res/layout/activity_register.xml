@@ -90,7 +90,7 @@
         android:textSize="18sp"/>
 
     <EditText
-        android:id="@+id/create_home_adress"
+        android:id="@+id/create_home_address"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_weight="1"
@@ -99,7 +99,7 @@
         android:layout_marginRight="40dp"
         android:layout_marginTop="6dp"
         android:padding="15dp"
-        android:hint="Home Adress"
+        android:hint="Home Address"
         android:textColorHint="#ffffff"
         android:inputType="text"
         android:textStyle="bold"

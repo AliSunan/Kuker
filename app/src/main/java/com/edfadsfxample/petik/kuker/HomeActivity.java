@@ -81,6 +81,7 @@ public class HomeActivity extends AppCompatActivity
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
         userNameTextView.setText(Prevalent.currentOnlineUser.getId());
+        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.user).into(profileImageView);
 
 
         recyclerView = findViewById(R.id.recycler_menu);

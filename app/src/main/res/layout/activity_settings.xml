@@ -52,7 +52,7 @@
         android:layout_gravity="center"/>
 
     <TextView
-        android:id="@+id/change_name_btn"
+        android:id="@+id/change_image_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Image"
@@ -68,12 +68,12 @@
         android:hint="Nama..."
         android:layout_margin="18dp"/>
 
-    <EditText
-        android:id="@+id/setting_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email..."
-        android:layout_margin="18dp"/>
+    <!--<EditText-->
+        <!--android:id="@+id/setting_email"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="Email..."-->
+        <!--android:layout_margin="18dp"/>-->
 
 
     <EditText
@@ -84,10 +84,10 @@
         android:layout_margin="18dp"/>
 
     <EditText
-        android:id="@+id/setting_adress"
+        android:id="@+id/setting_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Adress..."
+        android:hint="Address..."
         android:layout_margin="18dp"/>
 
 </LinearLayout>

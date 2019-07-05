@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.edfadsfxample.petik.kuker.Interface.ItemClickListner;
 import com.edfadsfxample.petik.kuker.R;
 
-public class ProductViewHolder extends RecyclerView.ViewHolder
+public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
     public TextView tvProductName, tvProductDesc, tvProductPrice;
     public ImageView imageView;
@@ -32,7 +32,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder
     }
 
 
-    private void onClick(View view)
+    public void onClick(View view)
     {
         listner.onClick(view, getAdapterPosition(),false);
     }

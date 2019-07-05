@@ -1,14 +1,10 @@
 package com.edfadsfxample.petik.kuker.Admin;
 
-import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.net.Uri;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -31,11 +27,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class AdminAddProductActivity extends AppCompatActivity
 {
-
     private String CatagoryName, Description, Price, ProdukName, saveCurrentDate, saveCurrentTime;
     private Button AddProduk;
     private ImageView InputImage;
@@ -48,7 +44,8 @@ public class AdminAddProductActivity extends AppCompatActivity
     private ProgressDialog loadingbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_product);
 
@@ -61,8 +58,7 @@ public class AdminAddProductActivity extends AppCompatActivity
         InputProdukName = (EditText) findViewById(R.id.produk_name);
         InputProdukDesc = (EditText) findViewById(R.id.produk_desc);
         InputProdukPrice = (EditText) findViewById(R.id.produk_price);
-        loadingbar = new ProgressDialog(this);
-        ;
+        loadingbar = new ProgressDialog(this);;
 
 
         InputImage.setOnClickListener(new View.OnClickListener() {
@@ -73,16 +69,16 @@ public class AdminAddProductActivity extends AppCompatActivity
         });
 
         AddProduk.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.N)
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 ValidateProdukData();
             }
         });
     }
 
-    private void OpenGallery() {
+    private void OpenGallery()
+    {
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
@@ -90,40 +86,55 @@ public class AdminAddProductActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null) {
+        if (requestCode==GalleryPick && resultCode==RESULT_OK && data!=null)
+        {
             ImageUri = data.getData();
             InputImage.setImageURI(ImageUri);
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void ValidateProdukData() {
+    private void ValidateProdukData()
+    {
+        ProdukName = InputProdukName.getText().toString();
         Description = InputProdukDesc.getText().toString();
         Price = InputProdukPrice.getText().toString();
-        ProdukName = InputProdukName.getText().toString();
 
-        if (ImageUri == null) {
+        if (ImageUri == null)
+        {
             Toast.makeText(this, "Products Image is mandatory...", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(Description)) {
+        }
+
+        else if (TextUtils.isEmpty(Description))
+        {
             Toast.makeText(this, "Please write product description...", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(Price)) {
+        }
+
+        else if (TextUtils.isEmpty(Price))
+        {
             Toast.makeText(this, "Please write product price...", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(ProdukName)) {
+        }
+
+        else if (TextUtils.isEmpty(ProdukName))
+        {
             Toast.makeText(this, "Please write product name...", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+
+        else
+        {
             StoreProductInformation();
         }
 
     }
 
 
-    @TargetApi(Build.VERSION_CODES.N)
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void StoreProductInformation() {
+
+    private void StoreProductInformation()
+    {
         loadingbar.setTitle("Adding New Products");
         loadingbar.setMessage("Dear Admin, please wait while we are adding new product.");
         loadingbar.setCanceledOnTouchOutside(false);
@@ -131,7 +142,7 @@ public class AdminAddProductActivity extends AppCompatActivity
 
         Calendar calendar = Calendar.getInstance();
 
-        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calendar.getTime());
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
@@ -146,20 +157,24 @@ public class AdminAddProductActivity extends AppCompatActivity
 
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
+            public void onFailure(@NonNull Exception e)
+            {
                 String message = e.toString();
                 Toast.makeText(AdminAddProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
                 loadingbar.dismiss();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+            {
                 Toast.makeText(AdminAddProductActivity.this, "Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
 
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
-                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        if (!task.isSuccessful()) {
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
+                    {
+                        if (!task.isSuccessful())
+                        {
                             throw task.getException();
                         }
 
@@ -168,8 +183,10 @@ public class AdminAddProductActivity extends AppCompatActivity
                     }
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        if (task.isSuccessful()) {
+                    public void onComplete(@NonNull Task<Uri> task)
+                    {
+                        if (task.isSuccessful())
+                        {
                             downloadImageUrl = task.getResult().toString();
 
                             Toast.makeText(AdminAddProductActivity.this, "got the Products image Url Successfully", Toast.LENGTH_SHORT).show();
@@ -183,7 +200,8 @@ public class AdminAddProductActivity extends AppCompatActivity
 
     }
 
-    private void SaveProductInfoToDatabase() {
+    private void SaveProductInfoToDatabase()
+    {
         HashMap<String, Object> productMap = new HashMap<>();
         productMap.put("pid", productRandomKey);
         productMap.put("date", saveCurrentDate);
@@ -197,19 +215,24 @@ public class AdminAddProductActivity extends AppCompatActivity
         ProductsRef.child(productRandomKey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+                        if (task.isSuccessful())
+                        {
                             Intent intent = new Intent(AdminAddProductActivity.this, AdminCategoryActivity.class);
                             startActivity(intent);
 
                             loadingbar.dismiss();
                             Toast.makeText(AdminAddProductActivity.this, "Products is added successfully...", Toast.LENGTH_SHORT).show();
-                        } else {
+                        }
+                        else
+                        {
                             loadingbar.dismiss();
                             String message = task.getException().toString();
-                            Toast.makeText(AdminAddProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminAddProductActivity.this, "Error: "+ message, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
     }
 }
