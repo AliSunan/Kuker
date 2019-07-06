@@ -68,13 +68,6 @@
         android:hint="Nama..."
         android:layout_margin="18dp"/>
 
-    <!--<EditText-->
-        <!--android:id="@+id/setting_email"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:hint="Email..."-->
-        <!--android:layout_margin="18dp"/>-->
-
 
     <EditText
         android:id="@+id/setting_phone"

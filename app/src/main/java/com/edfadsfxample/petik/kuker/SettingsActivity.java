@@ -35,7 +35,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SettingsActivity extends AppCompatActivity
 {
     private CircleImageView profileImage;
-    private EditText nameET, phoneET, addressET;
+    private EditText idET, phoneET, addressET;
     private TextView profilChangeTBtn, closeTBtn, saveTBtn;
 
 
@@ -54,11 +54,11 @@ public class SettingsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        storageProfilePictureRef = FirebaseStorage.getInstance().getReference().child("Profil pictures");
+        storageProfilePictureRef = FirebaseStorage.getInstance().getReference().child("Profile pictures");
 
 
         profileImage = (CircleImageView) findViewById(R.id.setting_profil_image);
-        nameET = (EditText) findViewById(R.id.setting_name);
+        idET = (EditText) findViewById(R.id.setting_name);
         phoneET = (EditText) findViewById(R.id.setting_phone);
         addressET = (EditText) findViewById(R.id.setting_address);
         profilChangeTBtn = (TextView) findViewById(R.id.change_image_btn);
@@ -66,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity
         saveTBtn = (TextView) findViewById(R.id.update_account_btn);
 
 
-        userInfoDisplay(profileImage, nameET, phoneET, addressET);
+        userInfoDisplay(profileImage, idET, phoneET, addressET);
 
 
         closeTBtn.setOnClickListener(new View.OnClickListener()
@@ -108,8 +108,8 @@ public class SettingsActivity extends AppCompatActivity
             }
         });
     }
-    
-    private void userInfoDisplay(final CircleImageView profileImage, final EditText nameET, final EditText phoneET, final EditText addressET) {
+
+    private void userInfoDisplay(final CircleImageView profileImage, final EditText idET, final EditText phoneET, final EditText addressET) {
         DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineUser.getId());
 
         UserRef.addValueEventListener(new ValueEventListener()
@@ -119,16 +119,15 @@ public class SettingsActivity extends AppCompatActivity
             {
                 if (dataSnapshot.exists())
                 {
-                    if (dataSnapshot.child("image").exists());
+                    if (dataSnapshot.child("image").exists())
                     {
                         String image = dataSnapshot.child("image").getValue().toString();
-                        String name = dataSnapshot.child("name").getValue().toString();
-                        String email = dataSnapshot.child("email").getValue().toString();
+                        String id = dataSnapshot.child("id").getValue().toString();
                         String address = dataSnapshot.child("address").getValue().toString();
                         String phone = dataSnapshot.child("phone").getValue().toString();
 
                         Picasso.get().load(image).into(profileImage);
-                        nameET.setText(name);
+                        idET.setText(id);
                         addressET.setText(address);
                         phoneET.setText(phone);
                     }
@@ -148,13 +147,13 @@ public class SettingsActivity extends AppCompatActivity
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
         HashMap<String, Object> userMap = new HashMap<>();
-        userMap.put("name", nameET.getText().toString());
+        userMap.put("id", idET.getText().toString());
         userMap.put("address", addressET.getText().toString());
         userMap.put("phone", phoneET.getText().toString());
         ref.child(Prevalent.currentOnlineUser.getId()).updateChildren(userMap);
 
 
-        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+        startActivity(new Intent(SettingsActivity.this, HomeActivity.class));
         Toast.makeText(SettingsActivity.this, "Profile info upload successfuly.", Toast.LENGTH_SHORT).show();
         finish();
     }
@@ -165,14 +164,14 @@ public class SettingsActivity extends AppCompatActivity
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE  &&  requestCode==RESULT_OK  &&  data!=null)
+        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE  &&  resultCode==RESULT_OK  &&  data!=null)
         {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
 
             profileImage.setImageURI(imageUri);
         }
-        else 
+        else
         {
             Toast.makeText(this, "Error, Try again.", Toast.LENGTH_SHORT).show();
 
@@ -185,7 +184,7 @@ public class SettingsActivity extends AppCompatActivity
 
     private void userInfoSaved()
     {
-        if (TextUtils.isEmpty(nameET.getText().toString()))
+        if (TextUtils.isEmpty(idET.getText().toString()))
         {
             Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
         }
@@ -197,10 +196,6 @@ public class SettingsActivity extends AppCompatActivity
         {
             Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
         }
-//        else if (TextUtils.isEmpty(emailET.getText().toString()))
-//        {
-//            Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
-//        }
         else if (checker.equals("clicked"))
         {
             uploadImage();
@@ -234,44 +229,43 @@ public class SettingsActivity extends AppCompatActivity
                     }
                     return fileRef.getDownloadUrl();
                 }
-            })
-            .addOnCompleteListener(new OnCompleteListener()
-            {
-                @Override
-                public void onComplete(@NonNull Task task)
-                {
-                    if (task.isSuccessful())
+            }).addOnCompleteListener(new OnCompleteListener()
                     {
-                        Uri downloadUri = (Uri) task.getResult();
-                        myUrl = downloadUri.toString();
+                        @Override
+                        public void onComplete(@NonNull Task task)
+                        {
+                            if (task.isSuccessful())
+                            {
+                                Uri downloadUri = (Uri) task.getResult();
+                                myUrl = downloadUri.toString();
 
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
 
-                        HashMap<String, Object> userMap = new HashMap<>();
-                        userMap.put("name", nameET.getText().toString());
-                        userMap.put("address", addressET.getText().toString());
-                        userMap.put("phone", phoneET.getText().toString());
-                        userMap.put("image",myUrl);
-                        ref.child(Prevalent.currentOnlineUser.getId()).updateChildren(userMap);
-
-
-                        progressDialog.dismiss();
+                                HashMap<String, Object> userMap = new HashMap<>();
+                                userMap.put("id", idET.getText().toString());
+                                userMap.put("address", addressET.getText().toString());
+                                userMap.put("phone", phoneET.getText().toString());
+                                userMap.put("image",myUrl);
+                                ref.child(Prevalent.currentOnlineUser.getId()).updateChildren(userMap);
 
 
-                        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-                        Toast.makeText(SettingsActivity.this, "Profile info upload successfuly.", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                    else
-                    {
-                        progressDialog.dismiss();
-                        Toast.makeText(SettingsActivity.this, "Error.", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+                                progressDialog.dismiss();
+
+
+                                startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+                                Toast.makeText(SettingsActivity.this, "Profile info upload successfuly.", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                            else
+                            {
+                                progressDialog.dismiss();
+                                Toast.makeText(SettingsActivity.this, "Error.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
         }
-        else 
+        else
         {
             Toast.makeText(this, "Image isn't selected.", Toast.LENGTH_SHORT).show();
         }

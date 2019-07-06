@@ -1,7 +1,7 @@
 package com.edfadsfxample.petik.kuker.Model;
 
 public class Users {
-    private String id, email, password, phone, address, image;
+    private String id, password, phone, address, image;
 
     public Users()
     {
@@ -9,9 +9,8 @@ public class Users {
     }
 
 
-    public Users(String id, String email, String password, String phone, String address, String image) {
+    public Users(String id, String password, String phone, String address, String image) {
         this.id = id;
-        this.email = email;
         this.password = password;
         this.phone = phone;
         this.address = address;
@@ -25,14 +24,6 @@ public class Users {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
