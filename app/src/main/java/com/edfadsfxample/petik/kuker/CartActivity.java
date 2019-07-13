@@ -34,6 +34,8 @@ public class CartActivity extends AppCompatActivity
     private Button nextProsesBtn;
     private TextView tvTotalAmount;
 
+    private int overTotalPrice = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,6 +51,21 @@ public class CartActivity extends AppCompatActivity
 
         nextProsesBtn = (Button) findViewById(R.id.next_proses_btn);
         tvTotalAmount = (TextView) findViewById(R.id.total_price);
+
+
+        nextProsesBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                tvTotalAmount.setText("Total Price = Rp. " + String.valueOf(overTotalPrice));
+
+                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
+                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -76,6 +93,9 @@ public class CartActivity extends AppCompatActivity
                 holder.tvProductQuantity.setText("Quantity = " + model.getQuantity());
                 holder.tvProductPrice.setText("Price Rp." + model.getPrice());
                 holder.tvProductName.setText(model.getPname());
+
+                int oneTypeProductPrice =((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
+                overTotalPrice = overTotalPrice + oneTypeProductPrice;
 
                 holder.itemView.setOnClickListener(new View.OnClickListener()
                 {

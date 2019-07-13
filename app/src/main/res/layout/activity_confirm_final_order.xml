@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConfirmFinalOrderActivity"
+    android:orientation="vertical">
+    
+    <TextView
+        android:id="@+id/shipment_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please write your Shipment Details"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_margin="25dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/shipment_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Your Name"/>
+
+    <EditText
+        android:id="@+id/shipment_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Your Phone Number"/>
+
+    <EditText
+        android:id="@+id/shipment_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Your Home Address"/>
+
+    <EditText
+        android:id="@+id/shipment_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Your Email"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+    <Button
+        android:id="@+id/shipment_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Confirm"
+        android:textSize="18dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:background="@color/colorPrimaryDark" />
+
+    </LinearLayout>
+
+</LinearLayout>
