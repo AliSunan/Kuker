@@ -18,7 +18,7 @@
             android:id="@+id/add_new_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="Add New Product"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -31,12 +31,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/manis"
-            android:layout_width="350dp"
-            android:layout_height="250dp"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:src="@drawable/manis"/>
@@ -48,17 +48,53 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/asin"
-            android:layout_width="350dp"
-            android:layout_height="250dp"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:src="@drawable/asin"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/admin_cno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Check New Orders"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+
+        <Button
+            android:id="@+id/admin_logout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
